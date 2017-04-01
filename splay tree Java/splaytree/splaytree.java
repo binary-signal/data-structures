@@ -1,3 +1,5 @@
+package splaytree;
+
 public class splaytree {
 
     public node root;
@@ -7,11 +9,11 @@ public class splaytree {
         root = null;
         records = 0;
     }
-    
-    //calculate the depth of a node
+
+    //calculate the depth of a splaytree.node
     public int node_depth(node node, node target) {
         int left_depth = 0;
-        int right_depth = 0; 
+        int right_depth = 0;
         if (node == null || node == target) {
             return 0;
         }
@@ -61,8 +63,8 @@ public class splaytree {
             return;
         }
         if (key == n.data) {
-            System.err.println("Try to insert duplicate value: " + key);
-            //splay(n.parent); //because of duplicate node splay the last accesed node e.g the father of node n
+            System.err.println("Trying to insert duplicate value: " + key);
+            //splay(n.parent); //because of duplicate splaytree.node splay the last accesed splaytree.node e.g the father of splaytree.node n
             return;
         }
         if (key < n.data) {
@@ -84,7 +86,7 @@ public class splaytree {
         }
     }
 
-    //count nodes
+    //count tree nodes
     public int countR(node h) {
         if (h == null) {
             return 0;
@@ -92,88 +94,86 @@ public class splaytree {
         return 1 + countR(h.left) + countR(h.right);
     }
 
-    public void rotate(node T) {	
-		node p = T.parent;
-		node gp = null;		
-		if (p != null) {  gp = p.parent; }				
-		if (!T.isRoot()) {
-			// Remember whether T is originally left child or right child
-			final boolean wasLeft = T.isLeftChild();
-			// T has grandparent		
-			if (gp != null) {
-				// Replace subtree of grandparent with T for Double rotations					
-				if (gp.left == p) {
-					gp.left = T;
-					T.parent = gp;
-				}
-				else {
-					gp.right = T;
-					T.parent = gp;
-				}
-			}
-			else {
-				// T has no grandparent, set T to the new root.
-				root = T;
-				T.parent = null;
-			}
-			// Rotate from left
-			if (wasLeft) {
-				// Attach T's right child to its parent's left child
-				p.left = T.right;
-				if (T.right != null) {						
-					T.right.parent = p;  // update the parent of T's subtree					
-				}
-				// Now rotate T, so T's parent becomes T's right child					
-				T.right = p;
-				if (p != null) {
-					p.parent = T;
-				}										
-			}
-			else { // Rotate from right
-				// Attach T's left child to its parent's right child
-				p.right = T.left;					
-				if (T.left != null) {
-					T.left.parent = p; // update the parent of T's subtree
-				}
-				// Now rotate T, so T's parent becomes T's left child
-				T.left = p;
-				if (p != null) {
-					p.parent = T;						
-				}					
-			}
-		}
-	}	
-    
+    public void rotate(node T) {
+        node p = T.parent;
+        node gp = null;
+        if (p != null) {
+            gp = p.parent;
+        }
+        if (!T.isRoot()) {
+            // Remember whether T is originally left child or right child
+            final boolean wasLeft = T.isLeftChild();
+            // T has grandparent
+            if (gp != null) {
+                // Replace subtree of grandparent with T for Double rotations
+                if (gp.left == p) {
+                    gp.left = T;
+                    T.parent = gp;
+                } else {
+                    gp.right = T;
+                    T.parent = gp;
+                }
+            } else {
+                // T has no grandparent, set T to the new root.
+                root = T;
+                T.parent = null;
+            }
+            // Rotate from left
+            if (wasLeft) {
+                // Attach T's right child to its parent's left child
+                p.left = T.right;
+                if (T.right != null) {
+                    T.right.parent = p;  // update the parent of T's subtree
+                }
+                // Now rotate T, so T's parent becomes T's right child
+                T.right = p;
+                if (p != null) {
+                    p.parent = T;
+                }
+            } else { // Rotate from right
+                // Attach T's left child to its parent's right child
+                p.right = T.left;
+                if (T.left != null) {
+                    T.left.parent = p; // update the parent of T's subtree
+                }
+                // Now rotate T, so T's parent becomes T's left child
+                T.left = p;
+                if (p != null) {
+                    p.parent = T;
+                }
+            }
+        }
+    }
+
     //splay
     public void splay(node n) {
-    	while(!n.isRoot()) { //splay until node n becomes the root
-    		node p = n.parent;
-    		node gp = p.parent;
-    		
-    		//n has a parent but no grandparent
-    		if(gp == null) {
-    			rotate(n); //zig rotation
-    			//rotations++;
-    		}
-    		else {
-    			//n has both parent and grandparent
-    			//zig zig
-    			if(n.isLeftChild() == p.isLeftChild()) {
-    				rotate(p);
-    				rotate(n);
-    				//rotations++;
-    			}
-    			else {
-    				//node n and its parent are not in the same direction 
-    				//zig zag 
-    				rotate(n);
-    				rotate(n);
-    				//rotations++;
-    			}
-    		}
-    	}
+        while (!n.isRoot()) { //splay until splaytree.node n becomes the root
+            node p = n.parent;
+            node gp = p.parent;
+
+            //n has a parent but no grandparent
+            if (gp == null) {
+                rotate(n); //zig rotation
+                //rotations++;
+            } else {
+                //n has both parent and grandparent
+                //zig zig
+                if (n.isLeftChild() == p.isLeftChild()) {
+                    rotate(p);
+                    rotate(n);
+                    //rotations++;
+                } else {
+                    //splaytree.node n and its parent are not in the same direction
+                    //zig zag
+                    rotate(n);
+                    rotate(n);
+                    //rotations++;
+                }
+            }
+        }
     }
-    //perform rotationa depending the node
+
+    //perform rotation depending the splaytree.node
     public void rotate_backup(node n) {
         node p = n.parent;
         node gp = null;

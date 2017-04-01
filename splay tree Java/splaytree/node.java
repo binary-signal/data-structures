@@ -1,3 +1,5 @@
+package splaytree;
+
 public class node {
 
     public int data;
@@ -20,49 +22,46 @@ public class node {
     }
 
     public boolean hasLeftChild() {
-        if(left != null) {
+        if (left != null) {
             return true;
         }
         return false;
     }
 
     public boolean hasRightChild() {
-        if(right != null) {
+        if (right != null) {
             return true;
         }
         return false;
     }
 
-     //check if this node is the root node
+    //check if this splaytree.node is the root splaytree.node
     public boolean isRoot() {
-        if(parent == null) {
+        if (parent == null) {
             return true;
         }
         return false;
     }
 
     public boolean isLeftChild() {
-        if(parent != null && parent.left == this) {
+        if (parent != null && parent.left == this) {
             return true;
         }
         return false;
     }
 
     public boolean isRightChild() {
-        if(parent != null && parent.right == this) {
+        if (parent != null && parent.right == this) {
             return true;
         }
         return false;
     }
 
-    //print node
+    //print splaytree.node
     public void print() {
-        System.out.print(" "+data+" ");
+        System.out.print(" " + data + " ");
     }
-    
-    public void print2() {
-    	System.out.println(data);
-    }
+
 
     public void print(boolean verbose) {
         if (verbose == false) {
