@@ -49,7 +49,7 @@
 //debug
 //#define DEBUG
 
-//Functions of Linked List
+
 
 /*********************************************************************
   Function: list_init
