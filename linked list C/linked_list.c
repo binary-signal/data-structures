@@ -35,9 +35,9 @@
 *Version 2                                                                        *
 *                                                                                 *
 *Description:                                                                     *
-*This code implements a single linked list data structure                         *
-*It it desing to link integer values by default. Maybe in                         *
-*future a more generic approache is made.If you don't know                        *
+*Code implements a single linked list data structure                              *
+*It links integer values by default. Maybe in the                                 *
+*future a more generic approache is made. If you don't know                       *
 *what is this just wiki it "Linked List" or "Single Linked                        *
 *List"                                                                            *
 **********************************************************************************/
